@@ -1,0 +1,45 @@
+IP2
+Requirements:
+- submit the project implementing chosen data structure/collection/container as an
+https://en.wikipedia.org/wiki/Abstract_data_type
+- provide CRUD/DAVE operations: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+- you can find ideas here https://en.wikipedia.org/wiki/List_of_data_structures or come up with your own
+- can only be started once IP1 was approved and has been uploaded to Moodle
+- your choice must be explicitly approved, must be unique so that no two students share the same
+project, but you are allowed to pick the one you have to implement in another course (eg. DSA)
+- you are allowed to take implementation online or use AI, but you should credit it properly
+Composition:
+- put your class in a separate custom namespace, use it in main
+- the class has a separate header file .h and an implementation file .cpp
+- there are no fields in .h file except private pointer to implementation https://wiki.c2.com/?PimplIdiom
+- all private members are put in a separate inner class only visible in .cpp file
+- object containing the fields is constructed in dynamic memory and is owned by the outer class
+https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization
+- class allows for proper (deep) copy https://en.wikipedia.org/wiki/Object_copying
+Operations:
+- CRUD operations are also implemented as operators: operator+= and operator-= for insert/delete,
+operator*= or operator%= for edit
+- contain 6 comparison operators (== != < <= > >=) that are logically aligned
+- contain operator! to clean the object/elements
+- contain operator [] to run search by value, returning position for lists and boolean or count for sets
+- contain toString() which prints aggregate information for your ADT
+- use const and references to pass parameters properly and distinguish methods designated for reading
+and for writing
+- are foolproof and throw proper standard exceptions in case of errors (eg. out of bounds, invalid
+argument, etc) as well as a custom exception (derive it from standard classes) in case of special
+situations specific for your project (eg. no duplicates allowed etc) – you must show you are able to
+create one for your class/namespace and use it (at least once)
+Files:
+- have a (proper) .h and a .cpp files for your class
+- have a demo.cpp where you would run a demonstration for your class: requires no user input and must
+call each method at least once
+- have a test.cpp which contains some testing scenario for the project: tests print diagnostic information
+along with whether each test passed or failed, requires no user input, identical output directed to
+stdout as well as log file log.txt which should contain some (40-80) lines of text, this file to be
+considered essential for the project submission
+- have makefile.txt which allows building from command line: a) to build the module .o from .h and .cpp
+b) to build demo c) to run it d) to build test e) to run it f) to clean everything and g) to rebuild from scratch
+- have documentation either in .h (recommended) or in a separate file
+- upload all files to a single folder in Git without any extra files or folders (eg. from IDE)
+Timeframe:
+- to be submitted during March

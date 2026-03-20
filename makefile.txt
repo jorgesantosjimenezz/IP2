@@ -1,0 +1,52 @@
+# makefile.txt
+# Build system for PriorityQueue (Binary Min-Heap) ADT — IP2
+#
+# Targets:
+#   module   - compile PriorityQueue.o from .h and .cpp
+#   demo     - build the demo executable
+#   rundemo  - run the demo
+#   test     - build the test executable
+#   runtest  - run the tests (output to stdout and log.txt)
+#   clean    - remove all generated files
+#   rebuild  - clean and rebuild everything from scratch
+#
+# Usage:  make -f makefile.txt <target>
+
+CXX      = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
+MODULE   = PriorityQueue
+
+.PHONY: module demo rundemo test runtest clean rebuild
+
+# a) Build the module .o from .h and .cpp
+module: $(MODULE).o
+
+$(MODULE).o: $(MODULE).cpp $(MODULE).h
+	$(CXX) $(CXXFLAGS) -c $(MODULE).cpp -o $(MODULE).o
+
+# b) Build demo
+demo: demo_app
+
+demo_app: demo.cpp $(MODULE).o
+	$(CXX) $(CXXFLAGS) demo.cpp $(MODULE).o -o demo_app
+
+# c) Run demo
+rundemo: demo_app
+	./demo_app
+
+# d) Build test
+test: test_app
+
+test_app: test.cpp $(MODULE).o
+	$(CXX) $(CXXFLAGS) test.cpp $(MODULE).o -o test_app
+
+# e) Run test
+runtest: test_app
+	./test_app
+
+# f) Clean everything
+clean:
+	rm -f $(MODULE).o demo_app test_app log.txt
+
+# g) Rebuild from scratch
+rebuild: clean module demo test

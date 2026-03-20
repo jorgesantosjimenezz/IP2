@@ -1,0 +1,80 @@
+==========================================================
+  PriorityQueue (Binary Min-Heap) ADT — TEST RESULTS
+==========================================================
+--- Test Suite: Constructor & Empty ---
+  [PASS] Default constructor creates empty queue
+  [PASS] Size of empty queue is 0
+  [PASS] toString of empty queue contains 'empty'
+
+--- Test Suite: Insert (operator+=) ---
+  [PASS] Insert 10: size becomes 1
+  [PASS] Insert 10: top is 10
+  [PASS] Insert 5: size becomes 2
+  [PASS] Insert 5: top is 5 (min-heap)
+  [PASS] Insert 20, 3, 15: size becomes 5
+  [PASS] Top is 3 (smallest)
+
+--- Test Suite: Search (operator[]) ---
+  [PASS] Search for 10: found (>= 0)
+  [PASS] Search for 5: found (>= 0)
+  [PASS] Search for 99: not found (== -1)
+  [PASS] Search for 20: found (>= 0)
+
+--- Test Suite: Edit (operator*=) ---
+  [PASS] After edit 20->1: 20 not found
+  [PASS] After edit 20->1: 1 is found
+  [PASS] After edit 20->1: top is 1
+  [PASS] Size unchanged after edit
+
+--- Test Suite: Delete (operator-=) ---
+  [PASS] After delete 5: size is 3
+  [PASS] After delete 5: 5 not found
+  [PASS] After delete 5: top is 3
+  [PASS] After delete 3: top is 10
+
+--- Test Suite: Clear (operator!) ---
+  [PASS] operator! returns empty queue
+  [PASS] Original queue unchanged
+
+--- Test Suite: Deep Copy ---
+  [PASS] Copy constructor: sizes equal
+  [PASS] Copy constructor: q1 == q2
+  [PASS] Modifying copy doesn't affect original
+  [PASS] Copy has new element
+  [PASS] Copy assignment: sizes equal
+  [PASS] Copy assignment: q1 == q3
+  [PASS] Modifying assigned copy doesn't affect original
+
+--- Test Suite: Comparison Operators ---
+  [PASS] a == b (same elements)
+  [PASS] !(a != b)
+  [PASS] a <= b
+  [PASS] a >= b
+  [PASS] !(a < b)
+  [PASS] !(a > b)
+  [PASS] a < b (fewer elements)
+  [PASS] a <= b
+  [PASS] b > a
+  [PASS] b >= a
+  [PASS] a != b
+
+--- Test Suite: Exception Handling ---
+  [PASS] DuplicateElementException on duplicate insert
+  [PASS] invalid_argument on remove from empty
+  [PASS] invalid_argument on edit nonexistent
+  [PASS] DuplicateElementException on edit to existing value
+  [PASS] out_of_range on top() of empty queue
+
+--- Test Suite: toString & operator<< ---
+  [PASS] Empty toString contains 'empty'
+  [PASS] toString contains 'size: 2'
+  [PASS] toString contains 'min: 5'
+  [PASS] operator<< produces non-empty output
+  [PASS] operator<< matches toString
+--- Test Suite: Large Insert (resize) ---
+  [PASS] 50 elements inserted correctly
+  [PASS] Top is 1 after inserting 50..1
+==========================================================
+  SUMMARY: 53/53 tests passed
+  ALL TESTS PASSED!
+==========================================================
