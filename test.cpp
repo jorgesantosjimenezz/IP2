@@ -6,7 +6,7 @@
 #include <utility>
 #include "PriorityQueue.h"
 
-using namespace pq;
+using namespace PQ;
 
 // ─── Dual-output stream helper ───────────────────────────────────
 // Writes to both stdout and the log file simultaneously.
@@ -102,9 +102,10 @@ void testClear() {
     logln("\n--- Test Suite: Clear (operator!) ---");
     PriorityQueue q;
     q += 1; q += 2; q += 3;
-    PriorityQueue cleared = !q;
-    reportTest("operator! returns empty queue", cleared.empty());
-    reportTest("Original queue unchanged", q.size() == 3);
+    reportTest("Before clear: size is 3", q.size() == 3);
+    !q;
+    reportTest("After !q: queue is empty", q.empty());
+    reportTest("After !q: size is 0", q.size() == 0);
 }
 
 void testDeepCopy() {
@@ -248,33 +249,38 @@ int main() {
         return 1;
     }
 
-    logln("==========================================================");
-    logln("  PriorityQueue (Binary Min-Heap) ADT — TEST RESULTS");
-    logln("==========================================================");
+    try {
+        logln("==========================================================");
+        logln("  PriorityQueue (Binary Min-Heap) ADT — TEST RESULTS");
+        logln("==========================================================");
 
+        testConstructorAndEmpty();
+        testInsert();
+        testSearch();
+        testEdit();
+        testDelete();
+        testClear();
+        testDeepCopy();
+        testComparison();
+        testExceptions();
+        testToString();
+        testLargeInsert();
 
-    testConstructorAndEmpty();
-    testInsert();
-    testSearch();
-    testEdit();
-    testDelete();
-    testClear();
-    testDeepCopy();
-    testComparison();
-    testExceptions();
-    testToString();
-    testLargeInsert();
+        logln("==========================================================");
+        logln("  SUMMARY: " + std::to_string(passedTests) + "/" +
+              std::to_string(totalTests) + " tests passed");
+        if (passedTests == totalTests) {
+            logln("  ALL TESTS PASSED!");
+        } else {
+            logln("  SOME TESTS FAILED!");
+        }
+        logln("==========================================================");
 
-
-    logln("==========================================================");
-    logln("  SUMMARY: " + std::to_string(passedTests) + "/" +
-          std::to_string(totalTests) + " tests passed");
-    if (passedTests == totalTests) {
-        logln("  ALL TESTS PASSED!");
-    } else {
-        logln("  SOME TESTS FAILED!");
+    } catch (const std::exception& e) {
+        logln("UNHANDLED EXCEPTION: " + std::string(e.what()));
+        logFile.close();
+        return 1;
     }
-    logln("==========================================================");
 
     logFile.close();
     return (passedTests == totalTests) ? 0 : 1;

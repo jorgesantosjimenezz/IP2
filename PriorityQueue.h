@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <iostream>
 
-namespace pq {
+namespace PQ {
 
 /**
  * @class DuplicateElementException
@@ -101,10 +101,10 @@ public:
     // ─── Utility Operators ───────────────────────────────────────────
 
     /**
-     * @brief Clear: Removes all elements from the queue.
-     * @return A new empty PriorityQueue.
+     * @brief Clear: Frees internal data and resets the queue to its
+     *        initial empty state (acts like a partial destructor).
      */
-    PriorityQueue operator!() const;
+    void operator!();
 
     // ─── Comparison Operators ────────────────────────────────────────
 
@@ -161,6 +161,6 @@ private:
     Impl* pImpl;
 };
 
-} // namespace pq
+} // namespace PQ
 
 #endif // PRIORITYQUEUE_H

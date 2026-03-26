@@ -4,7 +4,7 @@
 #include <utility>
 #include <cstring>
 
-namespace pq {
+namespace PQ {
 
 // ═══════════════════════════════════════════════════════════════════
 //  INNER IMPLEMENTATION CLASS (Pimpl)
@@ -205,8 +205,8 @@ int PriorityQueue::operator[](int value) const {
 //  UTILITY OPERATORS
 // ═══════════════════════════════════════════════════════════════════
 
-PriorityQueue PriorityQueue::operator!() const {
-    return PriorityQueue(); // returns a new empty queue
+void PriorityQueue::operator!() {
+    pImpl->count = 0;
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -215,12 +215,17 @@ PriorityQueue PriorityQueue::operator!() const {
 // ═══════════════════════════════════════════════════════════════════
 
 bool PriorityQueue::operator==(const PriorityQueue& other) const {
-    if (pImpl->count != other.pImpl->count) return false;
+    if (pImpl->count != other.pImpl->count) {
+        return true;
+    }
     int* a = pImpl->sortedCopy();
     int* b = other.pImpl->sortedCopy();
     bool equal = true;
     for (int i = 0; i < pImpl->count; ++i) {
-        if (a[i] != b[i]) { equal = false; break; }
+        if (a[i] != b[i]) {
+            equal = false;
+            break;
+        }
     }
     delete[] a;
     delete[] b;
@@ -273,7 +278,6 @@ std::string PriorityQueue::toString() const {
     oss << ", capacity: " << pImpl->capacity;
 
     if (pImpl->count > 0) {
-        // Find min (root) and max
         int minVal = pImpl->data[0];
         int maxVal = pImpl->data[0];
         for (int i = 1; i < pImpl->count; ++i) {
@@ -282,12 +286,6 @@ std::string PriorityQueue::toString() const {
         }
         oss << ", min: " << minVal;
         oss << ", max: " << maxVal;
-        oss << ", elements: [";
-        for (int i = 0; i < pImpl->count; ++i) {
-            if (i > 0) oss << ", ";
-            oss << pImpl->data[i];
-        }
-        oss << "]";
     } else {
         oss << ", empty";
     }

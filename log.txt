@@ -33,8 +33,9 @@
   [PASS] After delete 3: top is 10
 
 --- Test Suite: Clear (operator!) ---
-  [PASS] operator! returns empty queue
-  [PASS] Original queue unchanged
+  [PASS] Before clear: size is 3
+  [PASS] After !q: queue is empty
+  [PASS] After !q: size is 0
 
 --- Test Suite: Deep Copy ---
   [PASS] Copy constructor: sizes equal
@@ -75,6 +76,6 @@
   [PASS] 50 elements inserted correctly
   [PASS] Top is 1 after inserting 50..1
 ==========================================================
-  SUMMARY: 53/53 tests passed
+  SUMMARY: 54/54 tests passed
   ALL TESTS PASSED!
 ==========================================================
